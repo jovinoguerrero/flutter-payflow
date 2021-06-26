@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:payflow/modules/barcode_scanner/barcode_scanner_controller.dart';
 import 'package:payflow/modules/barcode_scanner/barcode_scanner_status.dart';
@@ -50,7 +48,7 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
             builder: (_,status,__) {
               if(status.showCamera) {
                 return Container(
-                  child: status.cameraController!.buildPreview(),
+                  child: controller.cameraController!.buildPreview(),
                 );
               } else {
                 return Container();
@@ -92,7 +90,9 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
               ],),
               bottomNavigationBar: SetLabelButtons(
                 primaryLabel: "Inserir código do boleto",
-                primaryOnPressed: (){},
+                primaryOnPressed: (){
+                  Navigator.pushReplacementNamed(context, "/insert_boleto");
+                },
                 secondaryLabel: "Adicionar da galeria",
                 secondaryOnPressed: (){},
               ),
@@ -107,9 +107,13 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
                   title: "Não foi possível identificar um código de barras.",
                   subtitle: "Tente escanear novamente ou digite o código do seu boleto.",
                   primaryLabel: "Escanear novamente",
-                  primaryOnPressed: (){},
+                  primaryOnPressed: (){
+                    controller.scanWithCamera();
+                  },
                   secondaryLabel: "Digitar código",
-                  secondaryOnPressed: (){},
+                  secondaryOnPressed: (){
+                    Navigator.pushReplacementNamed(context, "/insert_boleto");
+                  },
                 );
               } else {
                 return Container();
