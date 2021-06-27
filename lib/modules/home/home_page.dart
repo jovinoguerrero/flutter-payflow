@@ -16,10 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final homeController = HomeController();
-  final pages = [
-    MeusBoletosPage(),
-    ExtractPage(),
-  ];
+  // final pages = ;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -63,7 +60,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        body: pages[homeController.currentPage],
+        body: [
+          MeusBoletosPage(
+            key: UniqueKey(),
+          ),
+          ExtractPage(
+            key: UniqueKey(),
+          ),
+        ][homeController.currentPage],
         bottomNavigationBar: Container(
           height: 90,
           child: Row(
@@ -82,9 +86,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               GestureDetector(
-                onTap: () {
-                  // Navigator.pushNamed(context, "/barcode_scanner");
-                  Navigator.pushNamed(context, "/insert_boleto");
+                onTap: () async {
+                  await Navigator.pushNamed(context, "/barcode_scanner");
+                  setState(() {});
                 },
                 child: Container(
                   height: 56,
