@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:payflow/modules/extract/extract_page.dart';
 import 'package:payflow/modules/home/home_controller.dart';
 import 'package:payflow/modules/meus_boletos/meus_boletos_page.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
@@ -16,9 +17,7 @@ class _HomePageState extends State<HomePage> {
   final homeController = HomeController();
   final pages = [
     MeusBoletosPage(),
-    Container(
-      color: Colors.blueGrey,
-    ),
+    ExtractPage(),
   ];
   @override
   Widget build(BuildContext context) {
